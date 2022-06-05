@@ -2,10 +2,10 @@ package main
 
 import (
     "dagger.io/dagger"
-    "dagger.io/dagger/core"
     "universe.dagger.io/docker"
     "universe.dagger.io/go"
     "universe.dagger.io/docker/cli"
+    "universe.dagger.io/netlify"
 
 )
 
@@ -17,13 +17,14 @@ import (
 
 dagger.#Plan & {
     client: { 
-        filesystem: "./": read: contents: dagger.#FS
-        network: "unix:///var/run/docker.sock": connect: dagger.#Socket
         env: {
             // シークレットとして読み込む
             NETLIFY_TOKEN: dagger.#Secret
-            SITE_NAME: dagger.#Secret
         }
+        filesystem: {
+            "./": read: contents: dagger.#FS
+        }
+        network: "unix:///var/run/docker.sock": connect: dagger.#Socket
     }
 
     actions: {
@@ -107,9 +108,9 @@ dagger.#Plan & {
 
         // 開発環境用のnetlifyにデプロイ
         deploy: netlify.#Deploy & {
-			contents: actions.build.output
-			site:     client.env.SITE_NAME | *"dagger-app"
-            token: client.env.NETLIFY_TOKEN
+			contents: client.filesystem."./".read.contents
+            token:    client.env.NETLIFY_TOKEN
+			site:     string | *"dagger-app"
         }
     }
 }
