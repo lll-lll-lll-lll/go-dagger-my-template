@@ -8,9 +8,6 @@ import (
     "universe.dagger.io/docker/cli"
 
 )
-#Config: core.#ImageConfig & {
-    expose: "8080/tcp": {}
-}   
 
 #GoBuildDocker: docker.#Dockerfile & {
     dockerfile: {
@@ -22,6 +19,11 @@ dagger.#Plan & {
     client: { 
         filesystem: "./": read: contents: dagger.#FS
         network: "unix:///var/run/docker.sock": connect: dagger.#Socket
+        env: {
+            // シークレットとして読み込む
+            NETLIFY_TOKEN: dagger.#Secret
+            SITE_NAME: dagger.#Secret
+        }
     }
 
     actions: {
@@ -101,6 +103,13 @@ dagger.#Plan & {
                     docker rmi --force "$IMAGE_NAME"
                     """#
             }
+        }
+
+        // 開発環境用のnetlifyにデプロイ
+        deploy: netlify.#Deploy & {
+			contents: actions.build.output
+			site:     client.env.SITE_NAME | *"dagger-app"
+            token: client.env.NETLIFY_TOKEN
         }
     }
 }
