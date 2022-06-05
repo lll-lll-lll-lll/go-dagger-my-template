@@ -49,22 +49,25 @@ dagger.#Plan & {
         }
 
         // local hostを起動
-        startup: cli.#Run & {
-            host:   client.network."unix:///var/run/docker.sock".connect
-            always: true
-            env: {
-                IMAGE_NAME: params.image.localTag
-                PORTS:      "80:80"
-                DEP:        "\(load.success)" // DEP created wth load
-            }
-            command: {
-                name: "sh"
-                flags: "-c": #"""
-                    docker run -d --rm --name "$IMAGE_NAME" -p "$PORTS" "$IMAGE_NAME"
-                    """#
-            }
-        }
+        startup: {
         
+            run: cli.#Run & {
+                host:   client.network."unix:///var/run/docker.sock".connect
+                always: true
+                env: {
+                    IMAGE_NAME: params.image.localTag
+                    PORTS:      "8080"
+                    DEP:        "\(load.success)"
+                }
+                command: {
+                    name: "sh"
+                    flags: "-c": #"""
+                        docker run --expose "$PORTS" daggerimage
+                        """#
+                }
+            }
+
+        }
 
         // 作成したローカルのimageを削除する
         clean: cli.#Run & {
