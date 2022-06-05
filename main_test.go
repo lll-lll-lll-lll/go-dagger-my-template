@@ -1,4 +1,4 @@
-package godockerdagger
+package main
 
 import "testing"
 
