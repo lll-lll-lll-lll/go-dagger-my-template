@@ -1,0 +1,19 @@
+{
+  "name": "go_docker_dagger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lll-lll-lll-lll/dagger_go_netlify_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lll-lll-lll-lll/dagger_go_netlify_app/issues"
+  },
+  "homepage": "https://github.com/lll-lll-lll-lll/dagger_go_netlify_app#readme"
+}

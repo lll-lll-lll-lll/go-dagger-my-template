@@ -1,2 +1,4 @@
 cue.mod/
 .env
+# Local Netlify folder
+.netlify
