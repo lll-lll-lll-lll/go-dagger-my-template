@@ -39,28 +39,12 @@ dagger.#Plan & {
 
 
     actions:{
-        build: docker.#Build & {
-                steps: [
-                    docker.#Dockerfile &  {
-                        source: client.filesystem.".".read.contents
-                        dockerfile: {
-                            path: "./Dockerfile"
-                        }
-                    },
-                    docker.#Copy & {
-                        contents: client.filesystem.".".read.contents
-                    },
-                    docker.#Run & {
-                        command: {
-                            name: "go"
-                            args: ["mod", "download"]
-                        }
-                        mounts: {
-                            _vendorMount
-                        } 
-                    },
-                    ]
-                },
+        build: docker.#Dockerfile & { 
+            source: client.filesystem.".".read.contents
+            dockerfile: {
+                path: "./Dockerfile"
+            }
+        } 
         test: {
             
             gotest: docker.#Run & {

@@ -10,6 +10,6 @@ func TestMain(t *testing.T) {
 	a := 1
 	b := 2
 	if add(a, b) != 3 {
-		t.Errorf("add() = %v, want %v", add(1, 2), 3)
+		t.Fatalf("add() = %v, want %v", add(1, 2), 3)
 	}
 }
