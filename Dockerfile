@@ -12,6 +12,4 @@ COPY ./ ./
 
 EXPOSE 8080
 
-RUN echo -n hello world >> /test.txt
-
 CMD ["go", "run", "main.go"]
