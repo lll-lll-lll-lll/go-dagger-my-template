@@ -25,3 +25,6 @@ Available Actions:
 - ci
 ## やってないこと
 - cdの設定
+
+## 疑問
+- dockerの操作をdaggerでやる意味なくね問題
