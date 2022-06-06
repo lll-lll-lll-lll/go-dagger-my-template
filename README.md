@@ -1,4 +1,4 @@
-# dagger and docker and github actions
+# dagger and docker
 ## 設定
 - daggerのinstall <br>
 - daggerのupdate<br>
