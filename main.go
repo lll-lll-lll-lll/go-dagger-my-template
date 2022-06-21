@@ -1,26 +1,22 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	e := echo.New()
-
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-
-	e.GET("/", func(c echo.Context) error {
-		return c.HTML(http.StatusOK, "Hello, Docker! <3")
-	})
+	r := mux.NewRouter()
 	httpPort := os.Getenv("HTTP_PORT")
 	if httpPort == "" {
 		httpPort = "8080"
 	}
+	r.HandleFunc("/", sampleHandler1).Methods("GET")
+}
 
-	e.Logger.Fatal(e.Start(":" + httpPort))
+func sampleHandler1(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "hello sample")
 }
