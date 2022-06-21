@@ -1,4 +1,4 @@
-module github.com/go_docker_dagger
+module github.com/go-dagger
 
 go 1.18
 
