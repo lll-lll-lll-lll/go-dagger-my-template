@@ -32,7 +32,7 @@ func (tc *todoController) GetTodos(w http.ResponseWriter, r *http.Request) {
 	}
 	var todoResponses []dto.TodoResponse
 	for _, v := range todos {
-		todoResponses = append(todoResponses, dto.TodoResponse{ID: v.ID, Title: v.Title, Content: v.Content})
+		todoResponses = append(todoResponses, dto.TodoResponse{ID: v.Id, Title: v.Title, Content: v.Content})
 	}
 
 	var todosResponse dto.TodosResponse

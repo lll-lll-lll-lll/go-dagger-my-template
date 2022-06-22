@@ -1,14 +1,14 @@
 package dto
 
 type TodoResponse struct {
-	ID      int    `jsong:"id"`
-	Title   string `jsong:"title"`
-	Content string `jsong:"content"`
+	ID      int    `json:"id"`
+	Title   string `json:"title"`
+	Content string `json:"content"`
 }
 
 type TodoRequest struct {
-	Title   string `jsong:"title"`
-	Content string `jsong:"content"`
+	Title   string `json:"title"`
+	Content string `json:"content"`
 }
 
 type TodosResponse struct {
