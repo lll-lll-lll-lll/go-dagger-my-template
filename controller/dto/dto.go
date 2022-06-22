@@ -11,6 +11,6 @@ type TodoRequest struct {
 	Content string `jsong:"content"`
 }
 
-type TodoResponses struct {
+type TodosResponse struct {
 	Todos []TodoResponse `json:"todos"`
 }
