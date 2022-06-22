@@ -7,7 +7,7 @@ import (
 	"universe.dagger.io/docker/cli"
 )
 
-let dockerfilePath = "./build/Dockerfile"
+let dockerfilePath = "./../web-app/Dockerfile"
 
 #GoBuildDocker: docker.#Dockerfile & {
 	dockerfile: {

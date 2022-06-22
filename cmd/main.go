@@ -1,22 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/lll-lll-lll-lll/go-dagger/controller"
+	"github.com/lll-lll-lll-lll/go-dagger/repository"
 )
 
-func main() {
-	r := mux.NewRouter()
-	httpPort := os.Getenv("HTTP_PORT")
-	if httpPort == "" {
-		httpPort = "8080"
-	}
-	r.HandleFunc("/", sampleHandler1).Methods("GET")
-}
+var todoRepository = repository.NewTodoRepository()
+var todoContoroller = controller.NewTodoController(todoRepository)
+var todoRouter = controller.NewRouter(todoContoroller)
 
-func sampleHandler1(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello sample")
+func main() {
+	server := http.Server{
+		Addr: ":8080",
+	}
+	http.HandleFunc("/todos/", todoRouter.HandleTodosRequest)
+	server.ListenAndServe()
 }

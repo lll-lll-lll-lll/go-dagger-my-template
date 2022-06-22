@@ -28,3 +28,7 @@ Available Actions:
 
 ## 疑問
 - dockerの操作をdaggerでやる意味なくね問題
+
+
+**このサンプルを参考にテンプレ作成し、自分がカスタマイズしたいようにする**
+https://dev.classmethod.jp/articles/go-sample-rest-api/
