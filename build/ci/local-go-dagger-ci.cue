@@ -53,57 +53,5 @@ dagger.#Plan & {
 			tag:   params.image.localTag
 		}
 
-		// コンテナを作成
-		createContainer: {
-			run: cli.#Run & {
-				host: client.network."unix:///var/run/docker.sock".connect
-				command: {
-					name: "sh"
-					flags: "-c": #"""
-						docker run --restart=always --name daggercontainer -p 127.0.0.1:80:8080 -d daggerimage 
-						"""#
-				}
-			}
-		}
-
-		// コンテナを起動
-		startup: {
-			run: cli.#Run & {
-				host: client.network."unix:///var/run/docker.sock".connect
-				command: {
-					name: "sh"
-					flags: "-c": #"""
-						docker start daggercontainer
-						"""#
-				}
-			}
-		}
-
-		// コンテナをstop
-		stopContainer: {
-			run: cli.#Run & {
-				host: client.network."unix:///var/run/docker.sock".connect
-				command: {
-					name: "sh"
-					flags: "-c": #"""
-						docker stop daggercontainer
-						"""#
-				}
-			}
-		}
-
-		// 作成したローカルのimageを削除する
-		clean: cli.#Run & {
-			host:   client.network."unix:///var/run/docker.sock".connect
-			always: true
-			env: IMAGE_NAME: params.image.localTag
-			command: {
-				name: "sh"
-				flags: "-c": #"""
-					docker rmi --force "$IMAGE_NAME"
-					"""#
-			}
-		}
-
 	}
 }
