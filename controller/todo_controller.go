@@ -19,7 +19,8 @@ type todoController struct {
 	tr repository.TodoRepository
 }
 
-func NewTodoController(tr repository.TodoRepository) *todoController {
+// インターフェースTodoControllerを継承してる。メソッドを実装してないとエラーが返ってくる
+func NewTodoController(tr repository.TodoRepository) TodoController {
 	return &todoController{tr}
 }
 
