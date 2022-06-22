@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-dagger/api/router"
 	"github.com/go-dagger/controller"
-	"github.com/go-dagger/repository"
+	"github.com/go-dagger/model/repository"
 )
 
 var todoRepository = repository.NewTodoRepository()
