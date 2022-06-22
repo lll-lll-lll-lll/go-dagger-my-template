@@ -1,3 +1,3 @@
-module github.com/lll-lll-lll-lll/go-dagger
+module github.com/go-dagger
 
 go 1.18
