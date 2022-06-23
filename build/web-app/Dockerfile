@@ -22,4 +22,5 @@ EXPOSE 8080
 
 FROM alpine as runner
 COPY --from=builder /build/web-app /opt/app/
+# エントリーポイントを指定
 ENTRYPOINT ["/opt/app/web-app"]
