@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-dagger/controller/dto"
 	"github.com/go-dagger/model/entity"
-	"github.com/go-dagger/model/repository"
+	"github.com/go-dagger/repository"
 )
 
 type TodoController interface {
