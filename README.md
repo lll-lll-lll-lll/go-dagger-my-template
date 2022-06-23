@@ -1,33 +1,14 @@
-# dagger and docker
+# go使って開発する時のテンプレとして使う予定
 ## 設定
 - daggerのinstall <br>
 - daggerのupdate<br>
-- go.cueファイルに設定を書いてる<br>
-```sh
-dagger do 
-
-Options
-
-Available Actions:
- build           ローカルの./Dockerfileからimageをビルド
- test            goのtestを実行する
- load            ローカルにimageを作成する.  (注意：一回実行するとコンテナが再度作成されてしまう。直す必要ある)
- createContainer コンテナを作成
- startup         コンテナを起動
- stopContainer   コンテナをstop
- clean           作成したローカルのimageを削除する
- deploy          開発環境用のnetlifyにデプロイ
-
-```
+- build/ci/go.cueファイルに設定を書いてる<br>
 
 ## できること
 - コンテナ作成コンテナ内でサーバ起動
 - ci
 ## やってないこと
 - cdの設定
-
-## 疑問
-- dockerの操作をdaggerでやる意味なくね問題
 
 
 **このサンプルを参考にテンプレ作成し、自分がカスタマイズしたいようにする**

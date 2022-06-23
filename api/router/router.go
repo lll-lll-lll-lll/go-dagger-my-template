@@ -10,6 +10,7 @@ type Router interface {
 	HandleTodosRequest(w http.ResponseWriter, r *http.Request)
 }
 
+// interface Routerを実装
 type router struct {
 	todoContoroller controller.TodoController
 }
