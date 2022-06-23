@@ -9,8 +9,8 @@ import (
 )
 
 var todoRepository = repository.NewTodoRepository()
-var todoContoroller = controller.NewTodoController(todoRepository)
-var todoRouter = router.NewRouter(todoContoroller)
+var todoController = controller.NewTodoController(todoRepository)
+var todoRouter = router.NewRouter(todoController)
 
 func main() {
 	server := http.Server{

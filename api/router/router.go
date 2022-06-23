@@ -11,18 +11,18 @@ type Router interface {
 }
 
 type router struct {
-	todoContoroller controller.TodoContoroller
+	todoContoroller controller.TodoController
 }
 
-func NewRouter(todoContoroller controller.TodoContoroller) *router {
-	return &router{todoContoroller}
+func NewRouter(tc controller.TodoController) Router {
+	return &router{tc}
 }
 
 func (ro *router) HandleTodosRequest(w http.ResponseWriter, r *http.Request) {
 	// リクエストのメソッドによってメソッドを分ける
 	switch r.Method {
 	case "GET":
-		ro.todoContoroller.GetTodos()
+		ro.todoContoroller.GetTodos(w, r)
 	case "POST":
 		ro.todoContoroller.PostTodo(w, r)
 	case "PUT":
