@@ -22,6 +22,7 @@ dagger.#Plan & {
 		// ローカルのDockerfileからimageをビルド
 		build: docker.#Dockerfile & {
 			source: client.filesystem."./".read.contents
+			dockerfile: path: "./build/web-app/Dockerfile"
 			target: "builder"
 		}
 
