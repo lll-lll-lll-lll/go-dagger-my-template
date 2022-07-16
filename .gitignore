@@ -3,3 +3,4 @@ cue.mod/
 # Local Netlify folder
 .netlify
 vendor/
+.DS_Store
